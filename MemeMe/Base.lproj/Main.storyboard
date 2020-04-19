@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,77 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gMV-gE-UPK" userLabel="ImagePickerView">
+                                <rect key="frame" x="20" y="115" width="374" height="676"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HZW-ur-eAv">
+                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="r3H-vN-Ju4"/>
+                                    <barButtonItem title="Pick" id="vJY-cE-zQe">
+                                        <connections>
+                                            <action selector="pickAnImageFromAlbum:" destination="BYZ-38-t0r" id="8tM-UL-M1n"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" id="AOC-fB-iYv">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="A2p-dR-XOJ" userLabel="Camera">
+                                            <rect key="frame" x="227" y="11" width="24" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="camera" catalog="system"/>
+                                            <connections>
+                                                <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bFR-G7-A4s"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="3CO-9a-yTs"/>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ayh-4E-bX7" userLabel="TopTextField">
+                                <rect key="frame" x="161.5" y="144" width="91" height="57.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SD4-Vs-Uf2" userLabel="BottomTextField">
+                                <rect key="frame" x="125.5" y="660.5" width="163" height="57.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="HZW-ur-eAv" firstAttribute="top" secondItem="SD4-Vs-Uf2" secondAttribute="bottom" constant="100" id="3YR-Z5-p4A"/>
+                            <constraint firstItem="HZW-ur-eAv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7hg-8T-N01"/>
+                            <constraint firstItem="gMV-gE-UPK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="AtN-p7-VGl"/>
+                            <constraint firstItem="HZW-ur-eAv" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="KbL-P9-ffe"/>
+                            <constraint firstItem="gMV-gE-UPK" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Rr9-8k-A38"/>
+                            <constraint firstItem="ayh-4E-bX7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="bz9-d7-jag"/>
+                            <constraint firstItem="ayh-4E-bX7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hzX-kw-EgS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gMV-gE-UPK" secondAttribute="trailing" constant="20" id="kay-bg-a9W"/>
+                            <constraint firstItem="SD4-Vs-Uf2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lM8-IE-3sE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gMV-gE-UPK" secondAttribute="bottom" constant="71" id="pXa-11-qku"/>
+                            <constraint firstItem="HZW-ur-eAv" firstAttribute="top" secondItem="gMV-gE-UPK" secondAttribute="bottom" constant="27" id="tbv-lC-B1y"/>
+                            <constraint firstItem="HZW-ur-eAv" firstAttribute="centerX" secondItem="SD4-Vs-Uf2" secondAttribute="centerX" id="wD8-2B-cJF"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="bottomField" destination="SD4-Vs-Uf2" id="oO5-Ae-KBl"/>
+                        <outlet property="cameraButton" destination="A2p-dR-XOJ" id="MuK-ei-3ZW"/>
+                        <outlet property="imagePickerView" destination="gMV-gE-UPK" id="Gzz-87-Ejt"/>
+                        <outlet property="topField" destination="ayh-4E-bX7" id="qqH-N7-1xL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="117.85714285714285"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" catalog="system" width="64" height="48"/>
+    </resources>
 </document>
