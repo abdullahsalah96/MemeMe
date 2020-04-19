@@ -17,6 +17,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var bottomField: UITextField!
     
     let textFieldDelegate = TextFieldDelegate()
+    var keyboardShift:CGFloat = 0
     
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
@@ -78,13 +79,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomField.isFirstResponder{
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y -=  getKeyboardHeight(notification)
+            self.keyboardShift = view.frame.origin.y
         }
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
-        if bottomField.isFirstResponder{
-            view.frame.origin.y += getKeyboardHeight(notification)
+        print("HIIDEE")
+        print(self.keyboardShift)
+        if self.keyboardShift != CGFloat(0) {
+            print("Before \(view.frame.origin.y)")
+            view.frame.origin.y -= self.keyboardShift
+            print("After \(view.frame.origin.y)")
+            self.keyboardShift = 0
         }
     }
 
