@@ -64,7 +64,6 @@
                                         </button>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="D2o-a4-18U"/>
-                                    <barButtonItem title="Cancel" id="OJn-kg-ZKt" userLabel="CancelButton"/>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -93,7 +92,6 @@
                         <outlet property="activityButton" destination="OL1-a2-IER" id="r73-NE-wrX"/>
                         <outlet property="bottomField" destination="SD4-Vs-Uf2" id="oO5-Ae-KBl"/>
                         <outlet property="cameraButton" destination="A2p-dR-XOJ" id="MuK-ei-3ZW"/>
-                        <outlet property="cancelButton" destination="OJn-kg-ZKt" id="CxD-t7-ldl"/>
                         <outlet property="imagePickerView" destination="gMV-gE-UPK" id="Gzz-87-Ejt"/>
                         <outlet property="topField" destination="ayh-4E-bX7" id="qqH-N7-1xL"/>
                     </connections>

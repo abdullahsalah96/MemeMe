@@ -15,7 +15,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var topField: UITextField!
     @IBOutlet weak var bottomField: UITextField!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var activityButton: UIButton!
     //text field delegaet
     let textFieldDelegate = TextFieldDelegate()
@@ -28,30 +27,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var originalImage:UIImage?
         var memedImage:UIImage?
     }
-    
+    //instantiate meme class variable
+    var meme = Meme()
+    //text fields attributes
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
         NSAttributedString.Key.foregroundColor: UIColor.white,
         NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSAttributedString.Key.strokeWidth: -5
     ]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // configure UI elements
         configureUI()
     }
-    
     override func viewWillAppear(_ animated: Bool) {
+        //subscribe to keyboard notifications
         subscribeToKeyboardNotifications()
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        //unsubscribe to keyboard notifications
         unsubscribeToKeyboardNotifications()
     }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        //show image picker controller
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
             imagePickerView.image = image
             imagePickerView.contentMode = .scaleAspectFill
@@ -59,104 +59,110 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
     }
     func configureUI(){
-        setActivityButtonsState(false)
+        //configure UI
+        activityButton.isEnabled = false //disable activity button at start
+        //remove border
         topField.borderStyle = .none
-        topField.text = "TOP"
-        topField.textColor = UIColor.white
-        topField.defaultTextAttributes = memeTextAttributes
-        topField.delegate = textFieldDelegate
         bottomField.borderStyle = .none
+        //set text
+        topField.text = "TOP"
         bottomField.text = "BOTTOM"
-        bottomField.textColor = UIColor.white
+        //set text field attributes
+        topField.defaultTextAttributes = memeTextAttributes
         bottomField.defaultTextAttributes = memeTextAttributes
+        //set delegates
+        topField.delegate = textFieldDelegate
         bottomField.delegate = textFieldDelegate
         if(!UIImagePickerController.isSourceTypeAvailable(.camera)){
-                cameraButton.isEnabled = false
-            }
+            //if camera is not available disable button
+            cameraButton.isEnabled = false
+        }
     }
+    //pick image from album
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         present(imagePicker, animated: true, completion: nil)
-        setActivityButtonsState(true)
+        activityButton.isEnabled = true
     }
+    //capture image from camera
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
-        setActivityButtonsState(true)
+        activityButton.isEnabled = true
     }
-    
-    func setActivityButtonsState(_ x:Bool){
-        cancelButton.isEnabled = x
-        activityButton.isEnabled = x
-    }
-    
+    //if keyboard will for bottom text field calculate shift
     @objc func keyboardWillShow(_ notification:Notification) {
         if bottomField.isFirstResponder{
             view.frame.origin.y -=  getKeyboardHeight(notification)
             self.keyboardShift = view.frame.origin.y
         }
     }
-    
+    //if keyboard will hide check if it's shifted unshift it
     @objc func keyboardWillHide(_ notification:Notification) {
-        print("HIIDEE")
-        print(self.keyboardShift)
         if self.keyboardShift != CGFloat(0) {
-            print("Before \(view.frame.origin.y)")
             view.frame.origin.y -= self.keyboardShift
-            print("After \(view.frame.origin.y)")
             self.keyboardShift = 0
         }
     }
-    
+    //calculate height of keyboard
     func getKeyboardHeight(_ notification:Notification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
     }
-    
+    //subscribe to keyboard will show and hide notifs.
     func subscribeToKeyboardNotifications() {
        NotificationCenter.default.addObserver(self, selector:   #selector(keyboardWillShow(_:)), name:   UIResponder.keyboardWillShowNotification, object: nil)
        
        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    //unsubscribe from keyboard notifs
     func unsubscribeToKeyboardNotifications() {
     NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
+    //share meme
     @IBAction func shareMeme(_ sender: Any) {
-        
-        //activity view controller
+        //generate image
         let img = generateMemedImage()
+        //update meme struct data
+        self.meme.memedImage = img
+        self.meme.originalImage = self.imagePickerView.image
+        self.meme.bottoomText = self.bottomField.text
+        self.meme.topText = self.topField.text
+        //show activity view controller
         let viewController = UIActivityViewController(activityItems: [img], applicationActivities: nil)
+        viewController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+            if !completed {
+                // User canceled
+                viewController.dismiss(animated: true, completion: nil)
+                return
+            }
+            // User completed activity
+            self.save()
+            viewController.dismiss(animated: true, completion: nil)
+        }
         present(viewController, animated: true, completion: nil)
     }
-    
     func save(){
-        // Create the meme
-        let memedImage = generateMemedImage()
-        let meme = Meme(topText: topField.text!, bottoomText: bottomField.text!, originalImage: imagePickerView.image, memedImage: memedImage)
+        // save meme
+        UIImageWriteToSavedPhotosAlbum(meme.memedImage!, nil, nil, nil)
     }
-    
     func generateMemedImage() -> UIImage {
         // Render view to an image
-
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         //make a cropping rectangle
-        let croppingRect = CGRect(x: 30, y: 110, width: memedImage.size.width - CGFloat(80), height: memedImage.size.height - CGFloat(250))
+        let croppingRect = CGRect(x: 30, y: 115, width: memedImage.size.width - CGFloat(80), height: memedImage.size.height - CGFloat(250))
         //crop image based on rectangle
         let croppedImage = memedImage.cgImage!.cropping(to: croppingRect)
         UIGraphicsEndImageContext()
         return UIImage(cgImage: croppedImage!)
     }
-    
-  
-    
 }
 
