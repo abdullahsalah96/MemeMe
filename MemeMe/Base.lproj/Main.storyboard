@@ -50,15 +50,36 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KAu-m0-ogv">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="cSX-V8-gWP">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="OL1-a2-IER" userLabel="ActivityButton">
+                                            <rect key="frame" x="20" y="6" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" image="square.and.arrow.up" catalog="system"/>
+                                            <connections>
+                                                <action selector="shareMeme:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4XU-fy-MxF"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="D2o-a4-18U"/>
+                                    <barButtonItem title="Cancel" id="OJn-kg-ZKt" userLabel="CancelButton"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="HZW-ur-eAv" firstAttribute="top" secondItem="SD4-Vs-Uf2" secondAttribute="bottom" constant="100" id="3YR-Z5-p4A"/>
+                            <constraint firstItem="gMV-gE-UPK" firstAttribute="top" secondItem="KAu-m0-ogv" secondAttribute="bottom" constant="27" id="4Je-Ma-uXZ"/>
                             <constraint firstItem="HZW-ur-eAv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7hg-8T-N01"/>
                             <constraint firstItem="gMV-gE-UPK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="AtN-p7-VGl"/>
                             <constraint firstItem="HZW-ur-eAv" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="KbL-P9-ffe"/>
                             <constraint firstItem="gMV-gE-UPK" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Rr9-8k-A38"/>
+                            <constraint firstItem="KAu-m0-ogv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="SVD-M2-qRa"/>
+                            <constraint firstItem="KAu-m0-ogv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="WnC-da-p6o"/>
                             <constraint firstItem="ayh-4E-bX7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="bz9-d7-jag"/>
+                            <constraint firstItem="KAu-m0-ogv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="htU-9q-1mi"/>
                             <constraint firstItem="ayh-4E-bX7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hzX-kw-EgS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gMV-gE-UPK" secondAttribute="trailing" constant="20" id="kay-bg-a9W"/>
                             <constraint firstItem="SD4-Vs-Uf2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lM8-IE-3sE"/>
@@ -69,8 +90,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityButton" destination="OL1-a2-IER" id="r73-NE-wrX"/>
                         <outlet property="bottomField" destination="SD4-Vs-Uf2" id="oO5-Ae-KBl"/>
                         <outlet property="cameraButton" destination="A2p-dR-XOJ" id="MuK-ei-3ZW"/>
+                        <outlet property="cancelButton" destination="OJn-kg-ZKt" id="CxD-t7-ldl"/>
                         <outlet property="imagePickerView" destination="gMV-gE-UPK" id="Gzz-87-Ejt"/>
                         <outlet property="topField" destination="ayh-4E-bX7" id="qqH-N7-1xL"/>
                     </connections>
@@ -82,5 +105,6 @@
     </scenes>
     <resources>
         <image name="camera" catalog="system" width="64" height="48"/>
+        <image name="square.and.arrow.up" catalog="system" width="56" height="64"/>
     </resources>
 </document>
