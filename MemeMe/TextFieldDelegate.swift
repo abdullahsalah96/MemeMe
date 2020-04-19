@@ -11,7 +11,6 @@ import UIKit
 
 class TextFieldDelegate: NSObject, UISearchTextFieldDelegate{
 
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
