@@ -8,8 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemeCreationViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
  
+    //meme variables
+    var originalImage:UIImage?
+    var memedImage:UIImage?
     //Outlets
     @IBOutlet weak var imagePickerView: UIImageView!
     @IBOutlet weak var cameraButton: UIButton!
@@ -21,14 +24,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //variable used for shifting keyboard
     var keyboardShift:CGFloat = 0
     //struct for holding meme params
-    struct Meme {
-        var topText:String?
-        var bottoomText:String?
-        var originalImage:UIImage?
-        var memedImage:UIImage?
-    }
     //instantiate meme class variable
-    var meme = Meme()
     //text fields attributes
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
@@ -77,6 +73,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             //if camera is not available disable button
             cameraButton.isEnabled = false
         }
+    }
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     //pick image from album
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
@@ -130,10 +130,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //generate image
         let img = generateMemedImage()
         //update meme struct data
-        self.meme.memedImage = img
-        self.meme.originalImage = self.imagePickerView.image
-        self.meme.bottoomText = self.bottomField.text
-        self.meme.topText = self.topField.text
+        self.memedImage = img
+        self.originalImage = self.imagePickerView.image
         //show activity view controller
         let viewController = UIActivityViewController(activityItems: [img], applicationActivities: nil)
         viewController.completionWithItemsHandler = {(activityType: UIActivity.ActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
@@ -150,6 +148,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     func save(){
         // save meme
+        let meme = Meme(topText: topField.text, bottoomText: bottomField.text, originalImage: self.originalImage, memedImage: self.memedImage)
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
         UIImageWriteToSavedPhotosAlbum(meme.memedImage!, nil, nil, nil)
     }
     func generateMemedImage() -> UIImage {
