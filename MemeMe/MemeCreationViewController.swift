@@ -52,8 +52,10 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
             imagePickerView.image = image
             imagePickerView.contentMode = .scaleAspectFill
         }
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
+    
+    
     func configureUI(){
         //configure UI
         activityButton.isEnabled = false //disable activity button at start
@@ -74,7 +76,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
             cameraButton.isEnabled = false
         }
     }
-    
+    //dismiss back to table view/collection view
     @IBAction func cancelButton(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -95,7 +97,7 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
         activityButton.isEnabled = true
     }
     //if keyboard will for bottom text field calculate shift
-    @objc func keyboardWillShow(_ notification:Notification) {
+    @objc func keyboardWillShow(_ notification:Notification){
         if bottomField.isFirstResponder{
             view.frame.origin.y -=  getKeyboardHeight(notification)
             self.keyboardShift = view.frame.origin.y
@@ -153,6 +155,9 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
         UIImageWriteToSavedPhotosAlbum(meme.memedImage!, nil, nil, nil)
+        for meme in appDelegate.memes{
+            print(meme.topText)
+        }
     }
     func generateMemedImage() -> UIImage {
         // Render view to an image

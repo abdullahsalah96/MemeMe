@@ -8,14 +8,21 @@ class TableViewController: UITableViewController{
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain, target: self, action: #selector(createMeme))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(createMeme))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
     }
     
     @objc func createMeme(){
+//        performSegue(withIdentifier: "tableMemeSegue", sender: self)
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeCreationViewController") as! MemeCreationViewController
+        controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true)
     }
     
@@ -32,6 +39,8 @@ class TableViewController: UITableViewController{
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //show meme
-    }
+        let meme = self.memes[(indexPath as NSIndexPath).row]
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "ShowMemeViewController") as! ShowMemeViewController
+        controller.image = meme.memedImage
+        present(controller, animated: true)    }
 }

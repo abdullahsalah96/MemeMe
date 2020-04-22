@@ -15,10 +15,14 @@ class CollectionViewController: UICollectionViewController{
         super.viewDidLoad()
         configureLayout()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+    }
     
     func configureLayout(){
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .plain, target: self, action: #selector(createMeme))
-        let space:CGFloat = 1.0
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(createMeme))
+        let space:CGFloat = 3.0
         let dimension = (view.frame.size.width - (2 * space)) / 3.0
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
@@ -26,7 +30,9 @@ class CollectionViewController: UICollectionViewController{
     }
 
     @objc func createMeme(){
+//        performSegue(withIdentifier: "collectionMemeSegue", sender: self)
         let controller = self.storyboard?.instantiateViewController(withIdentifier: "MemeCreationViewController") as! MemeCreationViewController
+        controller.modalPresentationStyle = .fullScreen
         present(controller, animated: true)
     }
     
@@ -43,6 +49,9 @@ class CollectionViewController: UICollectionViewController{
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //show meme
+        let meme = self.memes[(indexPath as NSIndexPath).row]
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "ShowMemeViewController") as! ShowMemeViewController
+        controller.image = meme.memedImage
+        present(controller, animated: true)
     }
 }
