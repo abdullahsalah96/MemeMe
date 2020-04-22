@@ -54,27 +54,25 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
         }
         self.dismiss(animated: true, completion: nil)
     }
-    
-    
     func configureUI(){
         //configure UI
         activityButton.isEnabled = false //disable activity button at start
-        //remove border
-        topField.borderStyle = .none
-        bottomField.borderStyle = .none
-        //set text
-        topField.text = "TOP"
-        bottomField.text = "BOTTOM"
-        //set text field attributes
-        topField.defaultTextAttributes = memeTextAttributes
-        bottomField.defaultTextAttributes = memeTextAttributes
-        //set delegates
-        topField.delegate = textFieldDelegate
-        bottomField.delegate = textFieldDelegate
+        configureMemeTextField(textField: topField, text:  "TOP")
+        configureMemeTextField(textField: bottomField, text:  "BOTTOM")
         if(!UIImagePickerController.isSourceTypeAvailable(.camera)){
             //if camera is not available disable button
             cameraButton.isEnabled = false
         }
+    }
+    func configureMemeTextField(textField: UITextField, text: String) {
+        textField.text = text
+        //set delegates
+        textField.delegate = textFieldDelegate
+        //set text field attributes
+        textField.defaultTextAttributes = memeTextAttributes
+        //remove border
+        textField.borderStyle = .none
+        textField.textAlignment = .center
     }
     //dismiss back to table view/collection view
     @IBAction func cancelButton(_ sender: Any) {
@@ -82,19 +80,19 @@ class MemeCreationViewController: UIViewController, UIImagePickerControllerDeleg
     }
     //pick image from album
     @IBAction func pickAnImageFromAlbum(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
-        present(imagePicker, animated: true, completion: nil)
+        pickAnImage(sourceType: .photoLibrary)
         activityButton.isEnabled = true
     }
     //capture image from camera
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        pickAnImage(sourceType: .camera)
         activityButton.isEnabled = true
+    }
+    func pickAnImage(sourceType: UIImagePickerController.SourceType) {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = sourceType
+        present(imagePickerController, animated: true, completion: nil)
     }
     //if keyboard will for bottom text field calculate shift
     @objc func keyboardWillShow(_ notification:Notification){

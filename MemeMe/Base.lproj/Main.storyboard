@@ -197,12 +197,18 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ayh-4E-bX7" userLabel="TopTextField">
-                                <rect key="frame" x="161.5" y="144" width="91" height="57.5"/>
+                                <rect key="frame" x="57" y="144" width="300" height="57.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="jJj-NY-bE0"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SD4-Vs-Uf2" userLabel="BottomTextField">
-                                <rect key="frame" x="125.5" y="660.5" width="163" height="57.5"/>
+                                <rect key="frame" x="57" y="660.5" width="300" height="57.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="ToK-ug-8Q8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="40"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -239,16 +245,20 @@
                             <constraint firstItem="HZW-ur-eAv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7hg-8T-N01"/>
                             <constraint firstItem="gMV-gE-UPK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="AtN-p7-VGl"/>
                             <constraint firstItem="HZW-ur-eAv" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="KbL-P9-ffe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ayh-4E-bX7" secondAttribute="trailing" constant="57" id="NIU-8b-Asq"/>
                             <constraint firstItem="gMV-gE-UPK" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Rr9-8k-A38"/>
                             <constraint firstItem="KAu-m0-ogv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="SVD-M2-qRa"/>
                             <constraint firstItem="KAu-m0-ogv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="WnC-da-p6o"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SD4-Vs-Uf2" secondAttribute="trailing" constant="57" id="ZPl-NX-hSq"/>
                             <constraint firstItem="ayh-4E-bX7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="bz9-d7-jag"/>
                             <constraint firstItem="KAu-m0-ogv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="htU-9q-1mi"/>
                             <constraint firstItem="ayh-4E-bX7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hzX-kw-EgS"/>
+                            <constraint firstItem="SD4-Vs-Uf2" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="jYf-kC-emw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gMV-gE-UPK" secondAttribute="trailing" constant="20" id="kay-bg-a9W"/>
                             <constraint firstItem="SD4-Vs-Uf2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lM8-IE-3sE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="gMV-gE-UPK" secondAttribute="bottom" constant="71" id="pXa-11-qku"/>
                             <constraint firstItem="HZW-ur-eAv" firstAttribute="top" secondItem="gMV-gE-UPK" secondAttribute="bottom" constant="27" id="tbv-lC-B1y"/>
+                            <constraint firstItem="ayh-4E-bX7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="vtv-ya-p9o"/>
                             <constraint firstItem="HZW-ur-eAv" firstAttribute="centerX" secondItem="SD4-Vs-Uf2" secondAttribute="centerX" id="wD8-2B-cJF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
