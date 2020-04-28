@@ -17,8 +17,6 @@
 		554177A9244BBB5900A3A928 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554177A7244BBB5900A3A928 /* Main.storyboard */; };
 		554177AB244BBB5D00A3A928 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 554177AA244BBB5D00A3A928 /* Assets.xcassets */; };
 		554177AE244BBB5D00A3A928 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554177AC244BBB5D00A3A928 /* LaunchScreen.storyboard */; };
-		554177B9244BBB5D00A3A928 /* MemeMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554177B8244BBB5D00A3A928 /* MemeMeTests.swift */; };
-		554177C4244BBB5D00A3A928 /* MemeMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554177C3244BBB5D00A3A928 /* MemeMeUITests.swift */; };
 		554177D6244BE69A00A3A928 /* TextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554177D5244BE69A00A3A928 /* TextFieldDelegate.swift */; };
 		554471F2244FC36F0006FE20 /* ShowMemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554471F1244FC36F0006FE20 /* ShowMemeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -54,11 +52,7 @@
 		554177AD244BBB5D00A3A928 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		554177AF244BBB5D00A3A928 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		554177B4244BBB5D00A3A928 /* MemeMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemeMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		554177B8244BBB5D00A3A928 /* MemeMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeTests.swift; sourceTree = "<group>"; };
-		554177BA244BBB5D00A3A928 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		554177BF244BBB5D00A3A928 /* MemeMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MemeMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		554177C3244BBB5D00A3A928 /* MemeMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeMeUITests.swift; sourceTree = "<group>"; };
-		554177C5244BBB5D00A3A928 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		554177D5244BE69A00A3A928 /* TextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldDelegate.swift; sourceTree = "<group>"; };
 		554471F1244FC36F0006FE20 /* ShowMemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMemeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,8 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				554177A0244BBB5900A3A928 /* MemeMe */,
-				554177B7244BBB5D00A3A928 /* MemeMeTests */,
-				554177C2244BBB5D00A3A928 /* MemeMeUITests */,
 				5541779F244BBB5900A3A928 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,24 +118,6 @@
 				551F1926244F88C10044BA36 /* Meme.swift */,
 			);
 			path = MemeMe;
-			sourceTree = "<group>";
-		};
-		554177B7244BBB5D00A3A928 /* MemeMeTests */ = {
-			isa = PBXGroup;
-			children = (
-				554177B8244BBB5D00A3A928 /* MemeMeTests.swift */,
-				554177BA244BBB5D00A3A928 /* Info.plist */,
-			);
-			path = MemeMeTests;
-			sourceTree = "<group>";
-		};
-		554177C2244BBB5D00A3A928 /* MemeMeUITests */ = {
-			isa = PBXGroup;
-			children = (
-				554177C3244BBB5D00A3A928 /* MemeMeUITests.swift */,
-				554177C5244BBB5D00A3A928 /* Info.plist */,
-			);
-			path = MemeMeUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,7 +267,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				554177B9244BBB5D00A3A928 /* MemeMeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +274,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				554177C4244BBB5D00A3A928 /* MemeMeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
