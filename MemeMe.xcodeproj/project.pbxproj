@@ -105,19 +105,59 @@
 			children = (
 				554177A1244BBB5900A3A928 /* AppDelegate.swift */,
 				554177A3244BBB5900A3A928 /* SceneDelegate.swift */,
+				554177AF244BBB5D00A3A928 /* Info.plist */,
+				556B07A02458DE4A000DDDF1 /* Controllers */,
+				556B07A12458DE57000DDDF1 /* View */,
+				556B07A22458DE67000DDDF1 /* Storyboards */,
+				556B07A32458DE76000DDDF1 /* Assets */,
+				556B07A42458DE81000DDDF1 /* Model */,
+			);
+			path = MemeMe;
+			sourceTree = "<group>";
+		};
+		556B07A02458DE4A000DDDF1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				554177A5244BBB5900A3A928 /* MemeCreationViewController.swift */,
 				551F1928244F8B960044BA36 /* TableViewController.swift */,
 				551F192A244F8BF70044BA36 /* CollectionViewController.swift */,
 				554471F1244FC36F0006FE20 /* ShowMemeViewController.swift */,
-				551F192C244F97D40044BA36 /* MemeCollectionCell.swift */,
-				554177A7244BBB5900A3A928 /* Main.storyboard */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		556B07A12458DE57000DDDF1 /* View */ = {
+			isa = PBXGroup;
+			children = (
 				554177D5244BE69A00A3A928 /* TextFieldDelegate.swift */,
+				551F192C244F97D40044BA36 /* MemeCollectionCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		556B07A22458DE67000DDDF1 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				554177A7244BBB5900A3A928 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		556B07A32458DE76000DDDF1 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
 				554177AA244BBB5D00A3A928 /* Assets.xcassets */,
 				554177AC244BBB5D00A3A928 /* LaunchScreen.storyboard */,
-				554177AF244BBB5D00A3A928 /* Info.plist */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		556B07A42458DE81000DDDF1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				551F1926244F88C10044BA36 /* Meme.swift */,
 			);
-			path = MemeMe;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
