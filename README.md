@@ -18,3 +18,6 @@ The app consists of 3 View Controllers:
 <p align="center">
   <img src="docs/CreateMeme.png" width="149" height="260">
 </p>
+
+## Dependencies:
+- Apple UIKit
