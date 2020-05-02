@@ -6,15 +6,15 @@ The app consists of 3 View Controllers:
 
 - Table View Controller:
 <p align="center">
-  <img src="docs/TableView.png" width="149" height="300">
+  <img src="docs/TableView.png" width="149" height="260">
 </p>
 
 - Collection View Controller:
 <p align="center">
-  <img src="docs/CollectionView.png" width="149" height="300">
+  <img src="docs/CollectionView.png" width="149" height="260">
 </p>
 
 - Meme Creation View Controller:
 <p align="center">
-  <img src="docs/CreateMeme.png" width="149" height="300">
+  <img src="docs/CreateMeme.png" width="149" height="260">
 </p>
